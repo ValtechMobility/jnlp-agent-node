@@ -2,7 +2,7 @@ FROM jenkins/inbound-agent:alpine as jnlp
 
 FROM node:16.15.0-alpine
 
-RUN apk -U add openjdk8-jre git curl
+RUN apk -U add openjdk8-jre git curl bash
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
