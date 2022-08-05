@@ -14,6 +14,16 @@ RUN npm install -g gzipper
 
 RUN npm install -g jest
 
+RUN apk add --no-cache --virtual .build-deps gifsicle pngquant optipng libjpeg-turbo-utils udev ttf-opensans chromium
+RUN rm -rf /var/cache/apk/* /tmp/*
+
+ENV CHROME_BIN /usr/bin/chromium-browser
+ENV LIGHTHOUSE_CHROMIUM_PATH /usr/bin/chromium-browser
+
+RUN npm install -g @angular/cli@9.1.2
+
+RUN apk add --no-cache --virtual .gyp python make g++
+
 COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
 
