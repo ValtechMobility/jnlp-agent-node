@@ -13,10 +13,10 @@ RUN apk add --no-cache --update \
     python-dev \
     build-base
 
-RUN --no-cache add chromium=81.0.4044.113-r0
+RUN apk --no-cache add chromium=81.0.4044.113-r0
 ENV CHROME_BIN /usr/bin/chromium-browser
 
-COPY apk --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
+COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
 
 ENTRYPOINT ["/usr/local/bin/jenkins-agent"]
