@@ -6,6 +6,8 @@ RUN apk -U add openjdk11-jre git curl bash
 
 RUN apk -U add zip perl-utils
 
+RUN apk -U add libxml2-utils
+
 RUN npm set unsafe-perm true
 
 RUN npm install -g webpack@3.12.0
