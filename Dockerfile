@@ -8,8 +8,6 @@ USER root
 
 RUN apk -U add git curl bash
 
-RUN npm set unsafe-perm true
-
 RUN apk --no-cache add perl-dev
 
 RUN apk add --no-cache --update \
@@ -25,6 +23,8 @@ RUN . "/root/.nvm/nvm.sh"
 
 RUN nvm install 8.17.0
 RUN nvm use 8.17.0
+
+RUN npm set unsafe-perm true
 
 COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
