@@ -8,16 +8,6 @@ USER root
 
 RUN apk -U add git curl bash
 
-RUN apk --no-cache add perl-dev
-
-RUN apk add --no-cache --update \
-    python \
-    python-dev \
-    build-base
-
-RUN apk --no-cache add chromium=81.0.4044.113-r0
-ENV CHROME_BIN /usr/bin/chromium-browser
-
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 RUN . "/root/.nvm/nvm.sh"
 
