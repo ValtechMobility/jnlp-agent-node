@@ -2,6 +2,10 @@ FROM jenkins/inbound-agent:alpine-jdk21 as jnlp
 
 FROM jenkins/agent:latest-alpine-jdk21
 
+ARG user=jenkins
+
+USER root
+
 RUN apk -U add git curl bash
 
 RUN npm set unsafe-perm true
@@ -24,5 +28,11 @@ RUN nvm use 8.17.0
 
 COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
+
+USER ${user}
+
+RUN node --version
+RUN java --version
+RUN which java
 
 ENTRYPOINT ["/usr/local/bin/jenkins-agent"]
