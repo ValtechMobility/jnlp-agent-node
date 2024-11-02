@@ -1,8 +1,8 @@
 FROM jenkins/inbound-agent:alpine-jdk21 as jnlp
 
-FROM node:8.17.0-alpine
+FROM jenkins/agent:latest-alpine-jdk21
 
-RUN apk -U add openjdk17-jre git curl bash
+RUN apk -U add git curl bash
 
 RUN npm set unsafe-perm true
 
@@ -15,6 +15,12 @@ RUN apk add --no-cache --update \
 
 RUN apk --no-cache add chromium=81.0.4044.113-r0
 ENV CHROME_BIN /usr/bin/chromium-browser
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+RUN . "/root/.nvm/nvm.sh"
+
+RUN nvm install 8.17.0
+RUN nvm use 8.17.0
 
 COPY --from=jnlp /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-agent
 COPY --from=jnlp /usr/share/jenkins/agent.jar /usr/share/jenkins/agent.jar
