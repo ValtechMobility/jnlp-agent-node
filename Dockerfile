@@ -16,6 +16,6 @@ RUN apt update
 
 RUN apt install -y python2.7
 
-RUN npm config set python /usr/bin/python2.7
-
 USER ${user}
+
+RUN npm config set python /usr/bin/python2.7
