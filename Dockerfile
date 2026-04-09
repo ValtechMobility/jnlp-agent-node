@@ -14,7 +14,7 @@ RUN echo "deb http://archive.debian.org/debian bullseye main" > /etc/apt/sources
 
 RUN apt update
 
-RUN apt install -y python2.7
+RUN apt install -y python2.7 build-essential libexpat1-dev
 
 USER ${user}
 
