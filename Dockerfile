@@ -18,6 +18,6 @@ RUN apt install -y python2.7 build-essential libexpat1-dev
 
 USER ${user}
 
-ENV CHROME_BIN=/usr/bin/chromium-browser-bla
+ENV CHROME_BIN=/usr/bin/chromium
 
 RUN npm config set python /usr/bin/python2.7
